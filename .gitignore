@@ -1,0 +1,16 @@
+node_modules
+dist
+cdn
+rev
+build
+war
+.svn
+temp
+tmp
+.DS_Store
+.idea
+
+
+*.zip
+*.war
+*.rar
