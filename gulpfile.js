@@ -21,8 +21,7 @@ var gulp = require('gulp'),
     connect = require('gulp-connect'),
     runSequence = require('run-sequence'),
     watch = require('gulp-watch'),
-    livereload = require('gulp-livereload'),
-    replace = require('gulp-replace');
+    livereload = require('gulp-livereload');
 
 //cdn url
 var cdn_url = '//your.cdn.com/' + new Date().getFullYear() + '/' + (parseInt(new Date().getMonth() + 1)) + '/' + new Date().getDate() + '/';
