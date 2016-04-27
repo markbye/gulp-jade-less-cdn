@@ -149,13 +149,13 @@ gulp.task('watch', function (err) {
         gulp.run('jade');
     })
 
-    // 看守所有.scss档
+    // 监听所有.less档
     gulp.watch('app/less/**/*.less', ['css']);
 
-    // 看守所有.js档
+    // 监听所有.js档
     gulp.watch('app/js/**/*.js', ['js']);
 
-    // 看守所有图片档
+    // 监听所有图片档
     gulp.watch('app/images/**/*', ['images']);
 
 });
