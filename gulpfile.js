@@ -100,7 +100,7 @@ gulp.task('js', function () {
 });
 
 // 图片
-gulp.task('images', function () {ß
+gulp.task('images', function () {
     return gulp.src('app/images/**/*')
         .pipe(cache(imagemin({optimizationLevel: 3, progressive: true, interlaced: true})))
         .pipe(gulp.dest('dist/images'))
