@@ -21,7 +21,35 @@ var gulp = require('gulp'),
     connect = require('gulp-connect'),
     runSequence = require('run-sequence'),
     watch = require('gulp-watch'),
-    livereload = require('gulp-livereload');
+    livereload = require('gulp-livereload'),
+    gulpif = require('gulp-if'),
+    minimist = require('minimist');
+
+//get params from env
+var envs = {
+  string: 'env',
+  default: { env: process.env.NODE_ENV || 'production' }
+};
+
+var options = minimist(process.argv.slice(2), envs);
+
+gulp.task('test',function(){
+    console.log("get----",options.env);
+    return gulp.src('app/less/*.less')
+        .pipe(less())
+        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+        //.pipe(concat('index.css')) your can concat to one js or not
+        .pipe(gulp.dest('dist/css'))
+        .pipe(minifycss())
+        .pipe(rev())
+        .pipe(gulp.dest('dist/css'))
+        .pipe(gulpif(options.env=='cdn',gulp.dest('cdn/css')))
+        .pipe(rev.manifest())
+        .pipe(gulp.dest('rev/css'))
+        .pipe(livereload())
+        .pipe(notify({ message: 'css task complete' }));
+
+})
 
 //cdn url
 var cdn_url = '//your.cdn.com/' + new Date().getFullYear() + '/' + (parseInt(new Date().getMonth() + 1)) + '/' + new Date().getDate() + '/';
